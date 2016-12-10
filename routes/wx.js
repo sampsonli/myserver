@@ -3,7 +3,7 @@ var router = express.Router();
 var wechat = require('wechat');
 var WechatAPI = require('wechat-api');
 let config = require('../config');
-let app = WechatAPI(config.appid, config.appsecret);
+let app = new WechatAPI(config.appid, config.appsecret);
 
 /* GET users listing. */
 router.get('/', wechat(config.token, function (req, res, next) {
