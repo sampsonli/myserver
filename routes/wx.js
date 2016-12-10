@@ -9,7 +9,9 @@ let app = new WechatAPI(config.appid, config.appsecret);
 router.get('/', wechat(config.token, function (req, res, next) {
     // message is located in req.weixin
     var message = req.weixin;
-    console.log(message);
+    if(message.MsgType == 'text'){
+        res.reply({ type: "text", content: "you input " + message.Content});
+    }
 }));
 
 module.exports = router;
