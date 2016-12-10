@@ -8,6 +8,7 @@ var app = require('../app');
 var debug = require('debug')('myserver:server');
 var http = require('http');
 var https = require('https');
+var fs = require('fs');
 /**
  * Get port from environment and store in Express.
  */
@@ -21,14 +22,20 @@ app.set('sport', sport);
  */
 
 var server = http.createServer(app);
-var https_server = http.createServer({}, app);
+
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
 server.listen(port);
-https_server.listen(sport);
+
+https.createServer({
+    key: fs.readFileSync(path.join(__dirname, 'config/api.wxminapp.com.key')),
+    cert: fs.readFileSync(path.join(__dirname, 'config/api.wxminapp.com.crt'))
+}, app).listen(sport);
+
+
 server.on('error', onError);
 server.on('listening', onListening);
 
