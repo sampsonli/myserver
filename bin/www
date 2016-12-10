@@ -32,8 +32,8 @@ var server = http.createServer(app);
 server.listen(port);
 
 https.createServer({
-    key: fs.readFileSync(path.join(__dirname, 'config/api.wxminapp.com.key')),
-    cert: fs.readFileSync(path.join(__dirname, 'config/api.wxminapp.com.crt'))
+    key: fs.readFileSync(path.join(__dirname, '../config/api.wxminapp.com.key')),
+    cert: fs.readFileSync(path.join(__dirname, '../config/api.wxminapp.com.crt'))
 }, app).listen(sport);
 
 
