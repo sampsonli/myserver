@@ -29,7 +29,7 @@ module.exports = {
       ref  : "origin/master",
       // ssh_options: "StrictHostKeyChecking=no",
       repo : "git@git.oschina.net:sampsonli/myserver.git",
-      path : "/lichun/myproj/myserver",
+      path : "/home/lichun/myproj/myserver",
       "post-deploy" : "npm install && pm2 startOrRestart ecosystem.config.js --env api"
     }
   }
