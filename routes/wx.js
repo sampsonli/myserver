@@ -35,7 +35,7 @@ function askQuestion(text, from, cb) {
         method: 'GET',
     }).then(resp=>resp.json()).then(data=> {
         if (data.error_code === 0) {
-            cb(data.result.text)
+            cb(data.result.text.replace('图林机器人', '李春'))
         } else {
             console.error(data.reason);
             cb('我爱你\ue056')
