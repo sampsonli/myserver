@@ -27,7 +27,7 @@ module.exports = {
       host : "138.128.207.90",
       "key"  : "~/.ssh/id_rsa.pub",
       ref  : "origin/master",
-      ssh_options: "StrictHostKeyChecking=no",
+      // ssh_options: "StrictHostKeyChecking=no",
       repo : "git@git.oschina.net:sampsonli/myserver.git",
       path : "/lichun/myproj/myserver",
       "post-deploy" : "npm install && pm2 startOrRestart ecosystem.config.js --env api"
