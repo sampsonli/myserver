@@ -24,7 +24,7 @@ module.exports = {
   deploy : {
     production : {
       user : "lichun",
-      host : "wxminapp.com",
+      host : "138.128.207.90",
       ref  : "origin/master",
       "ssh_options": "PasswordAuthentication=no",
       // "ssh_options": ["StrictHostKeyChecking=no", "PasswordAuthentication=no"],
