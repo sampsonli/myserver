@@ -16,10 +16,23 @@ router.all('/', wechat(config.token, function (req, res, next) {
         }).then(resp=>resp.json()).then(data=>{
             if(data.error_code === 0){
                 res.reply({ type: "text", content: data.result.text});
+            }else {
+                console.log(data)
             }
+        }).catch(err=>{
+            console.error(err)
         })
 
     }
 }));
 
+
+fetch(`https://op.juhe.cn/robot/index?key=dd3eaeb4eb005860d134561d933ff883&info=${encodeURI('你好')}`, {
+    method: 'GET',
+}).then(resp=>resp.json()).then(data=>{
+    if(data.error_code === 0){
+        // res.reply({ type: "text", content: data.result.text});
+        console.log(data.result.text)
+    }
+})
 module.exports = router;
