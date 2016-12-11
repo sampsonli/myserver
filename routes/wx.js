@@ -11,7 +11,8 @@ router.all('/', wechat(config.token, function (req, res, next) {
     // message is located in req.weixin
     var message = req.weixin;
     if(message.MsgType == 'text'){
-        fetch(`https://op.juhe.cn/robot/index?key=dd3eaeb4eb005860d134561d933ff883&info=${encodeURI(message.Content)}`, {
+        console.log(message.Content);
+        fetch(`https://op.juhe.cn/robot/index?key=dd3eaeb4eb005860d134561d933ff883&info=${message.Content}`, {
             method: 'GET',
         }).then(resp=>resp.json()).then(data=>{
             if(data.error_code === 0){
@@ -27,12 +28,4 @@ router.all('/', wechat(config.token, function (req, res, next) {
 }));
 
 
-fetch(`https://op.juhe.cn/robot/index?key=dd3eaeb4eb005860d134561d933ff883&info=${encodeURI('你好')}`, {
-    method: 'GET',
-}).then(resp=>resp.json()).then(data=>{
-    if(data.error_code === 0){
-        // res.reply({ type: "text", content: data.result.text});
-        console.log(data.result.text)
-    }
-})
 module.exports = router;
