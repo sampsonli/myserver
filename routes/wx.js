@@ -18,17 +18,17 @@ router.all('/', wechat(config.token, function (req, res, next) {
                 res.reply({ type: "text", content: data.result.text});
             }else {
                 console.error(data.reason);
-                res.reply({ type: "text", content: '我爱你 '});
+                res.reply({ type: "text", content: '我爱你\ue056'});
             }
         }).catch(err=>{
             console.error(err)
         })
 
-    }else if(message.MsgType === 'device_event'){
-        if (message.Event === 'subscribe_status') {
+    }else if(message.MsgType === 'event'){
+        if (message.Event === 'subscribe') {
             res.reply({ type: "text", content: '你好，请问有什么需要帮忙的吗？'});
         }
-        if (message.Event === 'unsubscribe_status') {
+        if (message.Event === 'unsubscribe') {
             res.reply({ type: "text", content: '感谢你的关注，欢迎下次再来。。。'});
         }
     }
