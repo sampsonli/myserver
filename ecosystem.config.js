@@ -24,7 +24,7 @@ module.exports = {
   deploy : {
     production : {
       user : "lichun",
-      host : "138.128.207.90",
+      host : "wxminapp.com",
       ref  : "origin/master",
       ssh_options: "StrictHostKeyChecking=no",
       repo : "git@git.oschina.net:sampsonli/myserver.git",
