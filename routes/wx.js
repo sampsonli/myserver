@@ -38,7 +38,7 @@ function askQuestion(text, from, cb) {
             cb(data.result.text.replace('图灵机器人', '小春子'))
         } else {
             console.error(data.reason);
-            cb('我爱你\ue056')
+            cb('\ue056')
         }
     }).catch(err=> {
         console.error(err);
