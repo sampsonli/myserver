@@ -35,7 +35,7 @@ function askQuestion(text, from, cb) {
         method: 'GET',
     }).then(resp=>resp.json()).then(data=> {
         if (data.error_code === 0) {
-            cb(data.result.text.replace('图灵机器人', '小春子'))
+            cb(data.result.text.replace('/图灵机器人/a', '小春子'))
         } else {
             console.error(data.reason);
             cb('我爱你\ue056')
