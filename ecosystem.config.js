@@ -24,12 +24,12 @@ module.exports = {
   deploy : {
     production : {
       user : "lichun",
-      host : "138.128.207.90",
-      "key"  : "~/.ssh/id_rsa.pub",
+      host : "wxminapp.com",
       ref  : "origin/master",
-      ssh_options: "StrictHostKeyChecking=no",
+      // "ssh_options": "PasswordAuthentication=no",
+      "ssh_options": ["StrictHostKeyChecking=no", "PasswordAuthentication=no"],
       repo : "git@git.oschina.net:sampsonli/myserver.git",
-      path : "/lichun/myproj/myserver",
+      path : "/home/lichun/myproj/myserver",
       "post-deploy" : "npm install && pm2 startOrRestart ecosystem.config.js --env api"
     }
   }
