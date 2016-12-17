@@ -14,9 +14,8 @@ var path = require('path');
  * Get port from environment and store in Express.
  */
 var port = normalizePort(process.env.PORT || '8080');
-var sport = normalizePort(process.env.SPORT || '4431');
+
 app.set('port', port);
-app.set('sport', sport);
 
 /**
  * Create HTTP server.
@@ -30,11 +29,6 @@ var server = http.createServer(app);
  */
 
 server.listen(port);
-
-https.createServer({
-    key: fs.readFileSync(path.join(__dirname, '../config/api.wxminapp.com.key')),
-    cert: fs.readFileSync(path.join(__dirname, '../config/api.wxminapp.com.crt'))
-}, app).listen(sport);
 
 
 server.on('error', onError);
