@@ -1,19 +1,15 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
 
+import express from 'express'
+import path from 'path'
+import favicon from 'serve-favicon'
+import logger from 'morgan'
+import cookieParser from 'cookie-parser'
+import bodyParser from 'body-parser'
 
+import './app/config/db'
+import routes from './app/routes'
 
-var mongoose = require('mongoose');
-var db = mongoose.connect('mongodb://localhost:27017/test');
-require('./app/models');
-
-
-var routes = require('./app/routes');
-var app = express();
+const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -30,4 +26,5 @@ app.use(express.static(path.join(__dirname, 'public'),{
 
 app.use(routes);
 
-module.exports = app;
+export default app
+
