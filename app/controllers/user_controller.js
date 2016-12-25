@@ -6,11 +6,18 @@ import { wrap } from 'co'
 const User = mongoose.model('user');
 
 export const login = wrap(function *(req,resp){
-    let result = yield User.find({username: /hello/}, 'username email').exec();
+    let result = yield User.find({username: 'sampson'}, 'username email').exec();
     resp.json(result)
 });
 
 export const register = wrap(function *(req,resp){
-    const user = new User({username: 'hello', password: 'world',sex: '男', email: '123444@qq.com', phone: '2222222'});
-    resp.json(yield user.save())
+    const user = new User({firstName: 'hello', lastName: 'world',username: 'sampson',password: '123456',provider: 'local1', email: '123444@qq.com', phone: '2222222'});
+    let result;
+    try{
+        result = yield user.save()
+    }catch (e){
+        result = e
+    }
+
+    resp.json(result)
 });
