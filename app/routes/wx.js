@@ -8,4 +8,4 @@ const wx = express.Router();
 wx.all('/', all)
 
 
-export default user
+export default wx
