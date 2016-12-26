@@ -4,7 +4,7 @@
 import mongoose from 'mongoose'
 import fs from 'fs'
 import path from 'path'
-// mongoose.connect('mongodb://localhost:27017/test');
+mongoose.connect('mongodb://localhost:27017/test');
 mongoose.Promise = global.Promise;
 const models = path.join(__dirname, '../models');
 
