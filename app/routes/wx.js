@@ -5,7 +5,7 @@ import {all} from '../controllers/wx_ctl'
 import express from 'express'
 const wx = express.Router();
 
-wx.all('/', all)
+wx.all(all)
 
 
 export default user
