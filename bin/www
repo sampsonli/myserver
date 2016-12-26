@@ -4,24 +4,25 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('myserver:server');
-var http = require('http');
-var https = require('https');
-var fs = require('fs');
-var path = require('path');
+require('babel-register');
+require('babel-polyfill');
+
+const app = require('../service').default;
+const http = require('http');
+
 /**
  * Get port from environment and store in Express.
  */
+<<<<<<< HEAD
 var port = normalizePort(process.env.PORT || '8080');
 
+=======
+const port = process.env.PORT || '8080';
+>>>>>>> 2888ac23c878dd76ec5bf2c592824a06d0ef2f3b
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
 
-var server = http.createServer(app);
+const server = http.createServer(app);
 
 
 /**
@@ -30,28 +31,15 @@ var server = http.createServer(app);
 
 server.listen(port);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2888ac23c878dd76ec5bf2c592824a06d0ef2f3b
 server.on('error', onError);
 server.on('listening', onListening);
 
-/**
- * Normalize a port into a number, string, or false.
- */
 
-function normalizePort(val) {
-    var port = parseInt(val, 10);
 
-    if (isNaN(port)) {
-        // named pipe
-        return val;
-    }
-
-    if (port >= 0) {
-        // port number
-        return port;
-    }
-    return false;
-}
 
 /**
  * Event listener for HTTP server "error" event.
@@ -90,5 +78,5 @@ function onListening() {
     var bind = typeof addr === 'string'
         ? 'pipe ' + addr
         : 'port ' + addr.port;
-    debug('Listening on ' + bind);
+    console.log('Listening on ' + bind);
 }

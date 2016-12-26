@@ -1,13 +1,13 @@
-var express = require('express');
-var router = express.Router();
-var wechat = require('wechat');
-let fetch = require('node-fetch');
-var WechatAPI = require('wechat-api');
-let config = require('../config');
+import { wrap } from 'co'
+import wechat from 'wechat'
+import fetch from 'node-fetch'
+import WechatAPI from 'wechat-api'
+import config from '../config'
+
 let app = new WechatAPI(config.appid, config.appsecret);
 
 
-router.all('/', wechat(config.token, function (req, res, next) {
+export const all = wechat(config.token, function (req, res, next){
     // message is located in req.weixin
     var message = req.weixin;
     if (message.MsgType == 'text') {
@@ -27,7 +27,7 @@ router.all('/', wechat(config.token, function (req, res, next) {
             res.reply({type: "text", content: msg});
         })
     }
-}));
+})
 
 
 function askQuestion(text, from, cb) {
@@ -47,5 +47,3 @@ function askQuestion(text, from, cb) {
     })
 }
 
-
-module.exports = router;
