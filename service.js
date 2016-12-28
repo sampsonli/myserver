@@ -37,10 +37,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-const user = mongoose.model('user');
-passport.use(new LocalStrategy(user.authenticate()));
-passport.serializeUser(user.serializeUser());
-passport.deserializeUser(user.deserializeUser());
+const User = mongoose.model('user');
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.use(express.static(path.join(__dirname, 'public'),{
   maxAge: '1h'
