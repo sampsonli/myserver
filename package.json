@@ -24,6 +24,8 @@
     "morgan": "~1.7.0",
     "node-fetch": "^1.6.3",
     "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.0.0",
     "serve-favicon": "~2.3.0",
     "validator": "^6.2.0",
     "wechat": "^2.0.3",

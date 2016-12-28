@@ -8,6 +8,8 @@ import bodyParser from 'body-parser'
 import session from 'express-session'
 import mongo from 'connect-mongo'
 import mongoose from 'mongoose'
+import passport from 'passport'
+import {Strategy as localStrategy } from 'passport-local'
 
 import './app/config/db'
 import routes from './app/routes'
@@ -23,15 +25,17 @@ app.use(favicon(path.join(__dirname, 'public', 'spring.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(cookieParser());
+app.use(cookieParser());
 app.use(session({
     secret: 'hello world',
     name: 'sid',
-    cookie: {
-      // path: '.wxminapp.com'
-    },
+    resave: false,
+    saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection})
 }));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.static(path.join(__dirname, 'public'),{
   maxAge: '1h'
 }));

@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
     crypto = require('crypto'),
     validator = require('validator')
 
-
+import passportLocalMongoose from 'passport-local-mongoose'
 
 /**
  * A Validation function for local strategy properties
@@ -114,6 +114,8 @@ var UserSchema = new Schema({
     }
 });
 
+
+UserSchema.plugin(passportLocalMongoose);
 /**
  * Hook a pre save method to hash the password
  */
