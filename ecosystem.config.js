@@ -28,7 +28,7 @@ module.exports = {
       ref  : "origin/master",
       // "ssh_options": "PasswordAuthentication=no",
       "ssh_options": ["StrictHostKeyChecking=no", "PasswordAuthentication=no"],
-      repo : "git@github:sampsonli/myserver.git",
+      repo : "git@github.com:sampsonli/myserver.git",
       path : "/home/lichun/myproj/myserver",
       "post-deploy" : "npm install && pm2 startOrRestart ecosystem.config.js --env api"
     }
