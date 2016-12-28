@@ -10,9 +10,6 @@ require('babel-polyfill');
 const app = require('../service').default;
 const http = require('http');
 
-/**
- * Get port from environment and store in Express.
- */
 
 const port = process.env.PORT || '8080';
 
