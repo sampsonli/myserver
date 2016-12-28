@@ -10,6 +10,7 @@ import mongo from 'connect-mongo'
 import mongoose from 'mongoose'
 import passport from 'passport'
 import {Strategy as localStrategy } from 'passport-local'
+import user from './app/models/user'
 
 import './app/config/db'
 import routes from './app/routes'
@@ -35,6 +36,10 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+passport.use(new LocalStrategy(user.authenticate()));
+passport.serializeUser(user.serializeUser());
+passport.deserializeUser(user.deserializeUser());
 
 app.use(express.static(path.join(__dirname, 'public'),{
   maxAge: '1h'
