@@ -31,6 +31,9 @@ app.use(session({
     secret: 'hello world',
     name: 'sid',
     resave: false,
+    cookie: {
+      maxAge: '6h'
+    },
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection})
 }));
