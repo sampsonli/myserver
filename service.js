@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import session from 'express-session'
 import mongo from 'connect-mongo'
+import flash from 'connect-flash'
 import mongoose from 'mongoose'
 import passport from 'passport'
 import {Strategy as LocalStrategy } from 'passport-local'
@@ -31,13 +32,11 @@ app.use(session({
     secret: 'hello world',
     name: 'sid',
     resave: false,
-    cookie: {
-      maxAge: '6h'
-    },
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection})
 }));
 app.use(passport.initialize());
+app.use(flash());
 app.use(passport.session());
 
 const User = mongoose.model('user');
