@@ -4,10 +4,9 @@
 var mongoose = require('mongoose'),
     path = require('path'),
     Schema = mongoose.Schema,
-    crypto = require('crypto'),
     validator = require('validator')
 
-
+import passportLocalMongoose from 'passport-local-mongoose'
 
 /**
  * A Validation function for local strategy properties
@@ -80,13 +79,8 @@ var UserSchema = new Schema({
         lowercase: true,
         trim: true
     },
-    password: {
-        type: String,
-        default: ''
-    },
-    salt: {
-        type: String
-    },
+
+
     /*profileImageURL: {
         type: String,
         default: 'modules/users/client/img/profile/default.png'
@@ -98,9 +92,6 @@ var UserSchema = new Schema({
     providerData: {},
     additionalProvidersData: {},
 
-    updated: {
-        type: Date
-    },
     created: {
         type: Date,
         default: Date.now
@@ -114,67 +105,10 @@ var UserSchema = new Schema({
     }
 });
 
-/**
- * Hook a pre save method to hash the password
- */
-UserSchema.pre('save', function (next) {
-    if (this.password && this.isModified('password')) {
-        this.salt = crypto.randomBytes(16).toString('base64');
-        this.password = this.hashPassword(this.password);
-    }
-    next();
-});
 
-/**
- * Hook a pre validate method to test the local password
- */
-UserSchema.pre('validate', function (next) {
-    if (this.provider === 'local' && this.password && this.isModified('password')) {
-    //   todo valid password
-    }
+UserSchema.plugin(passportLocalMongoose);
 
-    next();
-});
 
-/**
- * Create instance method for hashing a password
- */
-UserSchema.methods.hashPassword = function (password) {
-    if (this.salt && password) {
-        return crypto.pbkdf2Sync(password, new Buffer(this.salt, 'base64'), 10000, 64, 'SHA1').toString('base64');
-    } else {
-        return password;
-    }
-};
-
-/**
- * Create instance method for authenticating user
- */
-UserSchema.methods.authenticate = function (password) {
-    return this.password === this.hashPassword(password);
-};
-
-/**
- * Find possible not used username
- */
-UserSchema.statics.findUniqueUsername = function (username, suffix, callback) {
-    var _this = this;
-    var possibleUsername = username.toLowerCase() + (suffix || '');
-
-    _this.findOne({
-        username: possibleUsername
-    }, function (err, user) {
-        if (!err) {
-            if (!user) {
-                callback(possibleUsername);
-            } else {
-                return _this.findUniqueUsername(username, (suffix || 0) + 1, callback);
-            }
-        } else {
-            callback(null);
-        }
-    });
-};
 
 
 

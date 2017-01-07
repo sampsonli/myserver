@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>login</title>
+  <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0"/>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no">
+
+  <link type="text/css" rel="stylesheet" href="/stylesheets/style.css"/>
+</head>
+<body>
+<div class="l-full">
+  <div style="border: 1px solid red;height: 10rem">
+    <%=error%>
+  </div>
+  <div class="l-full l-box-center">
+
+    <div style="width: 15rem;height: 15rem;border: 1px solid red" class="l-box-center">
+
+      <form action="/user/login" method="post">
+        <input name="username" value="sampson3"/>
+        <input type="password" name="password" value="123456"/>
+        <input type="submit" value="登录">
+      </form>
+
+    </div>
+  </div>
+
+
+</div>
+</body>
+</html>
