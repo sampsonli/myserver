@@ -17,7 +17,7 @@ export const login = function(req,res){
         if (err) {
             return next(err);
         }
-        res.redirect('/user/');
+        res.redirect('/api/user/');
     });
    /* wrap(function *(req,resp){
         let result = yield User.find().exec();
@@ -43,7 +43,7 @@ export const register = (req,res,next)=>{
                 if (err) {
                     return next(err);
                 }
-                res.redirect('/');
+                res.redirect('/api/user/');
             });
         });
     });
