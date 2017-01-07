@@ -6,7 +6,7 @@ import passport from 'passport'
 import express from 'express'
 const user = express.Router();
 
-user.post('/login', passport.authenticate('local', { failureRedirect: '/user/login', failureFlash: true }), login)
+user.post('/login', passport.authenticate('local', { failureRedirect: '/api/user/login', failureFlash: true }), login)
 
 user.get('/login', (req,res)=>{
     res.render('user/login', { user : req.user, error : req.flash('error')});
