@@ -48,7 +48,7 @@ app.use(express.static(path.join(__dirname, 'public'),{
   maxAge: '1h'
 }));
 
-app.use(routes);
+app.use('/api',routes);
 
 export default app
 
